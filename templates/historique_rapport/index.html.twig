@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HistoriqueRapport index{% endblock %}
+
+{% block body %}
+    <h1>HistoriqueRapport index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Historique_lienPdf</th>
+                <th>Historique_datedecreation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for historique_rapport in historique_rapports %}
+            <tr>
+                <td>{{ historique_rapport.id }}</td>
+                <td>{{ historique_rapport.historiqueLienPdf }}</td>
+                <td>{{ historique_rapport.historiqueDatedecreation ? historique_rapport.historiqueDatedecreation|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_historique_rapport_show', {'id': historique_rapport.id}) }}">show</a>
+                    <a href="{{ path('app_historique_rapport_edit', {'id': historique_rapport.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_historique_rapport_new') }}">Create new</a>
+{% endblock %}
