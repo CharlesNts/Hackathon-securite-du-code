@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HistoriqueRapport{% endblock %}
+
+{% block body %}
+    <h1>HistoriqueRapport</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ historique_rapport.id }}</td>
+            </tr>
+            <tr>
+                <th>Historique_lienPdf</th>
+                <td>{{ historique_rapport.historiqueLienPdf }}</td>
+            </tr>
+            <tr>
+                <th>Historique_datedecreation</th>
+                <td>{{ historique_rapport.historiqueDatedecreation ? historique_rapport.historiqueDatedecreation|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_historique_rapport_index') }}">back to list</a>
+
+    <a href="{{ path('app_historique_rapport_edit', {'id': historique_rapport.id}) }}">edit</a>
+
+    {{ include('historique_rapport/_delete_form.html.twig') }}
+{% endblock %}
